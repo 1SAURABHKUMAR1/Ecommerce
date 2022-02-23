@@ -5,8 +5,8 @@ const Footer = () => {
         <footer className="bg-indigo-500 px-6 py-2 text-center">
             <h1 className="text-white text-xl font-semibold">Contact Me</h1>
             <ul className="mt-2 items-center">
-                <li className="text-white inline-block mx-2 mt-1 items-center hover:scale-125">
-                    <a href="/">
+                <li className="text-white inline-block mx-2 mt-1 items-center hover:scale-125 focus:outline-none  focus:scale-125 ">
+                    <a href="/" className=" focus:outline-none">
                         <svg
                             fill="#fff"
                             xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ const Footer = () => {
                     </a>
                 </li>
                 <li className="text-white inline-block mx-2 font-semibold mt-1 hover:scale-125">
-                    <a href="/">
+                    <a href="/" className=" focus:outline-none">
                         <svg
                             fill="#fff"
                             xmlns="http://www.w3.org/2000/svg"
@@ -31,8 +31,8 @@ const Footer = () => {
                         </svg>
                     </a>
                 </li>
-                <li className="text-white inline-block mx-2 font-semibold mt-1 hover:scale-125">
-                    <a href="/">
+                <li className="text-white inline-block mx-2 font-semibold mt-1 hover:scale-125 focus:outline-none   focus:scale-125 ">
+                    <a href="/" className=" focus:outline-none">
                         <svg
                             fill="#fff"
                             xmlns="http://www.w3.org/2000/svg"

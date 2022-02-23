@@ -12,22 +12,25 @@ const Header = () => {
 
     return (
         <>
-            <header className="bg-indigo-500 sm:flex sm:items-center sm:justify-between pb-1 px-4">
-                <div className="px-2 py-3 flex items-center justify-between">
+            <header className="bg-indigo-500 px-4 pb-1 sm:flex sm:items-center sm:justify-between">
+                <div className="flex items-center justify-between px-2 py-3">
                     <div>
-                        <span className="text-white font-semibold text-xl">
+                        <a
+                            href="/"
+                            className="text-xl font-semibold text-white"
+                        >
                             Ecommerce
-                        </span>
+                        </a>
                     </div>
 
                     <div className="sm:hidden">
                         <button
                             type="button"
-                            className="block text-gray-200 fill-current focus:outline-none focus:text-white hover:text-white"
+                            className="block fill-current text-gray-200 hover:text-white focus:text-white focus:outline-none"
                             onClick={handleToggle}
                         >
                             <svg
-                                className="h-6 w-6 fillCurrent"
+                                className="fillCurrent h-6 w-6"
                                 viewBox="0 0 24 24"
                             >
                                 {navbarOpen ? (
@@ -49,21 +52,34 @@ const Header = () => {
                 <SearchBox display={'sm'} />
 
                 <nav
-                    className={`pt-2 pb-4 ease-in-out sm:flex sm:p-0 sm:px-4 sm:py-2 sm:items-center
+                    className={`pt-2 pb-4 ease-in-out sm:flex sm:items-center sm:p-0 sm:py-2 sm:pl-4
                      ${navbarOpen ? 'block' : 'hidden'}`}
                 >
                     <a
-                        href="/"
-                        className="block text-white font-semibold text-lg mt-1 py-1 px-2  hover:bg-gray-100 hover:text-black hover:rounded rounded"
+                        href="/signup"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold  text-white hover:rounded hover:bg-gray-100 hover:text-black"
                     >
-                        Product
+                        Signup
                     </a>
 
-                    <div className="relative sm:block hidden">
+                    <a
+                        href="/login"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold  text-white hover:rounded hover:bg-gray-100 hover:text-black"
+                    >
+                        Login
+                    </a>
+                    <a
+                        href="/"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold  text-white hover:rounded hover:bg-gray-100 hover:text-black"
+                    >
+                        Products
+                    </a>
+
+                    {/* <div className="relative hidden sm:block">
                         <button
                             onClick={handleToggle}
                             type="button"
-                            className="z-10 relative block h-8 w-8 mx-4 rounded-full overflow-hidden focus:outline-none"
+                            className="relative z-10 mx-4 block h-8 w-8 overflow-hidden rounded-full focus:outline-none"
                         >
                             <img
                                 src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80"
@@ -74,29 +90,29 @@ const Header = () => {
 
                         <button
                             tabIndex="-1"
-                            className={`fixed bg-black opacity-40 inset-0 cursor-default ${
+                            className={`fixed inset-0 cursor-default bg-black opacity-40 ${
                                 navbarOpen ? 'block' : 'hidden'
                             }`}
                             onClick={() => setNavbarOpen(false)}
                         ></button>
 
                         <div
-                            className={`absolute right-0 mt-4 py-2 px-2 border-1 w-48 bg-white rounded shadow-xl ${
+                            className={`border-1 absolute right-0 mt-4 w-48 rounded bg-white py-2 px-2 shadow-xl ${
                                 navbarOpen ? 'block' : 'hidden'
                             }`}
                         >
                             <NavbarBox />
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="relative sm:hidden mt-6">
+                    <div className="relative mt-6 sm:hidden">
                         <div type="button" className="flex items-center">
                             <img
                                 src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80"
                                 alt="avatar"
-                                className="h-8 w-8 mx-2 rounded-full object-cover overflow-hidden focus:outline-none"
+                                className="mx-2 h-8 w-8 overflow-hidden rounded-full object-cover focus:outline-none"
                             />
-                            <span className="text-white font-semibold mx-3 cursor-default">
+                            <span className="mx-3 cursor-default font-semibold text-white">
                                 Joe James
                             </span>
                         </div>
@@ -104,19 +120,19 @@ const Header = () => {
                         <div className="mt-3">
                             <a
                                 href="/"
-                                className="block px-2 py-2 mt-1 text-white font-semibold hover:bg-gray-100 hover:text-black hover:rounded"
+                                className="mt-1 block px-2 py-2 font-semibold text-white hover:rounded hover:bg-gray-100 hover:text-black"
                             >
                                 Account Settings
                             </a>
                             <a
                                 href="/"
-                                className="block px-2 py-2 mt-1 text-white font-semibold  hover:bg-gray-100 hover:text-black hover:rounded"
+                                className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-gray-100 hover:text-black"
                             >
                                 My Orders
                             </a>
                             <a
                                 href="/"
-                                className="block px-2 py-2 mt-1 text-white font-semibold  hover:bg-gray-100 hover:text-black hover:rounded"
+                                className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-gray-100 hover:text-black"
                             >
                                 Logout
                             </a>

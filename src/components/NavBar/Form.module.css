@@ -1,0 +1,8 @@
+::-webkit-file-upload-button {
+    background-color: #fff;
+    padding: 8px;
+    border: none;
+    box-shadow: 1px 0px 0px 1px #d1d5db;
+    font-weight: 600;
+    color: #4b5563;
+}
