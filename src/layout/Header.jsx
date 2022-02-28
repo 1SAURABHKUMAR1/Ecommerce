@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import NavbarBox from '../components/NavBar/NavBarBox';
-import SearchBox from '../components/NavBar/SearchBox';
+import NavbarBox from '../components/NavBarBox';
 
 const Header = () => {
     const [navbarOpen, setNavbarOpen] = useState(false);
@@ -49,33 +48,31 @@ const Header = () => {
                     </div>
                 </div>
 
-                <SearchBox display={'sm'} />
-
                 <nav
                     className={`pt-2 pb-4 ease-in-out sm:flex sm:items-center sm:p-0 sm:py-2 sm:pl-4
                      ${navbarOpen ? 'block' : 'hidden'}`}
                 >
                     <a
                         href="/signup"
-                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold  text-white hover:rounded hover:bg-gray-100 hover:text-black"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 sm:mr-3 sm:bg-indigo-400 sm:px-3 sm:font-medium sm:hover:rounded sm:hover:bg-gray-100 sm:hover:text-indigo-500"
                     >
                         Signup
                     </a>
 
                     <a
                         href="/login"
-                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold  text-white hover:rounded hover:bg-gray-100 hover:text-black"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 sm:px-3 sm:font-medium sm:hover:bg-indigo-500 sm:hover:text-gray-50"
                     >
                         Login
                     </a>
                     <a
-                        href="/"
-                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold  text-white hover:rounded hover:bg-gray-100 hover:text-black"
+                        href="/category"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 sm:px-3  sm:font-medium sm:hover:bg-indigo-500 sm:hover:text-gray-50"
                     >
-                        Products
+                        Product
                     </a>
 
-                    {/* <div className="relative hidden sm:block">
+                    <div className="relative hidden sm:block">
                         <button
                             onClick={handleToggle}
                             type="button"
@@ -90,7 +87,7 @@ const Header = () => {
 
                         <button
                             tabIndex="-1"
-                            className={`fixed inset-0 cursor-default bg-black opacity-40 ${
+                            className={`fixed inset-0 z-20 cursor-default bg-black opacity-40 ${
                                 navbarOpen ? 'block' : 'hidden'
                             }`}
                             onClick={() => setNavbarOpen(false)}
@@ -99,11 +96,11 @@ const Header = () => {
                         <div
                             className={`border-1 absolute right-0 mt-4 w-48 rounded bg-white py-2 px-2 shadow-xl ${
                                 navbarOpen ? 'block' : 'hidden'
-                            }`}
+                            } z-20`}
                         >
                             <NavbarBox />
                         </div>
-                    </div> */}
+                    </div>
 
                     <div className="relative mt-6 sm:hidden">
                         <div type="button" className="flex items-center">
@@ -120,27 +117,25 @@ const Header = () => {
                         <div className="mt-3">
                             <a
                                 href="/"
-                                className="mt-1 block px-2 py-2 font-semibold text-white hover:rounded hover:bg-gray-100 hover:text-black"
+                                className="mt-1 block px-2 py-2 font-semibold text-white hover:rounded hover:bg-slate-50 hover:text-gray-800"
                             >
                                 Account Settings
                             </a>
                             <a
                                 href="/"
-                                className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-gray-100 hover:text-black"
+                                className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-slate-50 hover:text-gray-800"
                             >
                                 My Orders
                             </a>
                             <a
                                 href="/"
-                                className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-gray-100 hover:text-black"
+                                className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-slate-50 hover:text-gray-800"
                             >
                                 Logout
                             </a>
                         </div>
                     </div>
                 </nav>
-
-                {!navbarOpen && <SearchBox display={'mobile'} />}
             </header>
         </>
     );

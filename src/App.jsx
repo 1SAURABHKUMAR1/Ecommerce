@@ -3,8 +3,10 @@ import HomeRouter from './router/HomeRouter';
 
 function App() {
     return (
-        <div className="font-popins">
-            <HomeRouter />
+        <div className="font-popins m-auto h-full w-full min-w-0">
+            <div className="m-0 flex min-h-screen flex-col justify-between">
+                <HomeRouter />
+            </div>
         </div>
     );
 }

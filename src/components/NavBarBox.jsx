@@ -5,19 +5,19 @@ const NavbarBox = () => {
         <>
             <a
                 href="/"
-                className="block px-2 py-2 text-gray-800 hover:bg-gray-400 hover:text-white  hover:rounded "
+                className="block px-2 py-2 text-gray-900 hover:rounded hover:bg-slate-200"
             >
                 Account Settings
             </a>
             <a
                 href="/"
-                className="block px-2 py-2 text-gray-800 hover:bg-gray-400 hover:text-white hover:rounded "
+                className="block px-2 py-2 text-gray-900 hover:rounded hover:bg-slate-200"
             >
                 My Orders
             </a>
             <a
                 href="/"
-                className="block px-2 py-2 text-gray-800 hover:bg-gray-400 hover:text-white hover:rounded "
+                className="block px-2 py-2 text-gray-900 hover:rounded hover:bg-slate-200"
             >
                 Logout
             </a>

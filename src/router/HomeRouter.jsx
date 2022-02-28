@@ -7,6 +7,7 @@ import Signup from '../pages/SignupPage/Signup';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
 import Login from '../pages/LoginPage/Login';
+import Category from '../pages/CategoryPage/Category';
 
 const HomeRouter = () => {
     return (
@@ -16,6 +17,7 @@ const HomeRouter = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/category" element={<Category />} />
                 <Route exact path="*" element={<PageNotFound />} />
             </Routes>
             <Footer />
