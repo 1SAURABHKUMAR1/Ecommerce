@@ -17,7 +17,7 @@ const Form = ({
             <form
                 action=""
                 className="w-5/6 max-w-sm space-y-4 sm:space-y-6"
-                method=""
+                method="POST"
                 encType="multipart/form-data"
             >
                 <h1 className="mt-6 mb-8 text-center text-3xl font-bold tracking-tight text-indigo-500">
@@ -146,7 +146,7 @@ const Form = ({
 
                 {forgotPassword && (
                     <div className="text-md cursor-pointer text-right text-gray-700 hover:text-gray-500">
-                        <a href="/">Forgot Password</a>
+                        <a href="/forgotpassword">Forgot Password</a>
                     </div>
                 )}
             </form>

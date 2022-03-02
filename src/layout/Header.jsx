@@ -16,7 +16,7 @@ const Header = () => {
                     <div>
                         <a
                             href="/"
-                            className="text-xl font-semibold text-white"
+                            className="text-xl font-semibold text-white outline-none focus:text-gray-100"
                         >
                             Ecommerce
                         </a>
@@ -54,20 +54,20 @@ const Header = () => {
                 >
                     <a
                         href="/signup"
-                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 sm:mr-3 sm:bg-indigo-400 sm:px-3 sm:font-medium sm:hover:rounded sm:hover:bg-gray-100 sm:hover:text-indigo-500"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 focus:rounded focus:bg-slate-200 focus:text-gray-800 focus:outline-none sm:mr-3 sm:bg-indigo-400 sm:px-3 sm:font-medium sm:hover:rounded sm:hover:bg-gray-100 sm:hover:text-indigo-500 sm:focus:bg-gray-100 sm:focus:text-indigo-500"
                     >
                         Signup
                     </a>
 
                     <a
                         href="/login"
-                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 sm:px-3 sm:font-medium sm:hover:bg-indigo-500 sm:hover:text-gray-50"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 focus:bg-slate-200 focus:text-gray-800 focus:outline-none sm:px-3 sm:font-medium sm:hover:bg-indigo-500 sm:hover:text-gray-50 sm:focus:bg-indigo-500 sm:focus:text-gray-50"
                     >
                         Login
                     </a>
                     <a
                         href="/category"
-                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 sm:px-3  sm:font-medium sm:hover:bg-indigo-500 sm:hover:text-gray-50"
+                        className="mt-1 block rounded py-1 px-2 text-lg font-semibold text-gray-50 hover:rounded hover:bg-slate-200 hover:text-gray-800 focus:bg-slate-200 focus:text-gray-800 focus:outline-none sm:px-3 sm:font-medium sm:hover:bg-indigo-500 sm:hover:text-gray-50 sm:focus:bg-indigo-500 sm:focus:text-gray-50"
                     >
                         Product
                     </a>

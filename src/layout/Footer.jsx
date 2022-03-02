@@ -7,7 +7,7 @@ const Footer = () => {
             <ul className="mt-2 items-center">
                 <li className="mx-2 mt-1 inline-block items-center text-white hover:scale-125 focus:scale-125  focus:outline-none ">
                     <a
-                        href="/"
+                        href="https://www.github.com/1SAURABHKUMAR1"
                         target="_blank"
                         rel="noreferrer"
                         className=" focus:outline-none"
@@ -25,7 +25,7 @@ const Footer = () => {
                 </li>
                 <li className="mx-2 mt-1 inline-block font-semibold text-white hover:scale-125">
                     <a
-                        href="/"
+                        href="https://www.twitter.com/1SAURABHKUMAR1"
                         target="_blank"
                         rel="noreferrer"
                         className=" focus:outline-none"
@@ -43,7 +43,7 @@ const Footer = () => {
                 </li>
                 <li className="mx-2 mt-1 inline-block font-semibold text-white hover:scale-125 focus:scale-125   focus:outline-none ">
                     <a
-                        href="/"
+                        href="https://www.linkedin.com/in/1saurabhkumar1/"
                         target="_blank"
                         rel="noreferrer"
                         className=" focus:outline-none"

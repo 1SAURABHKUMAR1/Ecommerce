@@ -2,6 +2,7 @@ import React from 'react';
 
 import HeroCategory from '../../components/HeroCategory';
 import FilterCategory from '../../components/FilterCategory';
+import AllProductsCategory from '../../components/AllProductsCategory';
 
 const Product = () => {
     return (
@@ -10,6 +11,7 @@ const Product = () => {
                 <div className="w-full px-7">
                     <HeroCategory />
                     <FilterCategory />
+                    <AllProductsCategory />
                 </div>
             </div>
         </>
