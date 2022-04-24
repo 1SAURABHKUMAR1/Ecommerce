@@ -1,0 +1,15 @@
+body::-webkit-scrollbar {
+    width: 12px;
+    background-color: hsl(225deg, 25%, 95%);
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: hsl(225deg, 12%, 40%);;
+    border: 2px solid hsl(225deg, 25%, 95%);;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 3px;
+    background-color: transparent;
+}

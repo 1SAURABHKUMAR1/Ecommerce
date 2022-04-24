@@ -1,9 +1,13 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+
+import useScrollToTop from '../../Hooks/useScrollToTop';
 
 const PageNotFound = () => {
+    useScrollToTop();
+
     return (
         <>
-            <div className="flex w-full flex-1 flex-col items-center justify-center bg-gray-50">
+            <div className="my-4 flex w-full flex-1 flex-col items-center justify-center bg-gray-50">
                 <h1 className="mb-5 text-center text-5xl font-bold tracking-wide text-gray-700">
                     <span className="text-indigo-700">404 &nbsp;</span>
                     Page not found
@@ -12,12 +16,12 @@ const PageNotFound = () => {
                     Please check the URL and try again
                 </span>
                 <div className="text-center">
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         className="inline-block rounded bg-indigo-500 px-4 py-2 font-semibold text-white"
                     >
                         Go to Home
-                    </a>
+                    </Link>
                 </div>
             </div>
         </>
