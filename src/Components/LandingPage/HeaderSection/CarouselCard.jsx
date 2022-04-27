@@ -43,7 +43,6 @@ const CarouselCard = ({ carouselImage }) => {
                     src={carouselImage}
                     className="m-auto h-full w-auto translate-x-20 object-cover"
                     alt=""
-                    loading="lazy"
                 />
             </div>
         </>

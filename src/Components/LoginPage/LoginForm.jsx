@@ -117,7 +117,7 @@ const LoginForm = () => {
                 {loading ? (
                     <LoaderButton />
                 ) : (
-                    <FormButton buttonText={'Signup'} />
+                    <FormButton buttonText={'Login'} />
                 )}
 
                 <div className="text-md cursor-pointer text-right text-gray-700 hover:text-gray-500">

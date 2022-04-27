@@ -10,8 +10,6 @@ const BestProductCard = ({
     productReview,
     productKey,
 }) => {
-    // const ratingStars = [];
-
     const [ratingStars, setRatingStars] = useState([]);
 
     for (let rating = 1; rating <= 5; rating++) {

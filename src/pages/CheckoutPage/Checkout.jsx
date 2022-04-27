@@ -1,12 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 
-import OrderPriceSummary from '../../Components/CheckoutPage/OrderPriceSummary/OrderPriceSummary';
-import ProductCard from '../../Components/CheckoutPage/ProductsForm/ProductCard';
-import CheckoutWrapper from '../../Components/CheckoutPage/Wrapper/CheckoutWrapper';
-import AddressForm from '../../Components/CheckoutPage/AddressForm/AddressForm';
-
 import useScrollToTop from '../../Hooks/useScrollToTop';
+import CheckoutForm from '../../Components/CheckoutPage/CheckoutForm';
 
 const Checkout = () => {
     useScrollToTop();
@@ -23,45 +19,7 @@ const Checkout = () => {
                         />
                     </h1>
                     <div className="mdmid:flex-row flex flex-col gap-6">
-                        <div className="flex w-full flex-col items-center">
-                            <CheckoutWrapper headerTitle={'Item Overview'}>
-                                <ProductCard />
-                                <ProductCard />
-                            </CheckoutWrapper>
-                            <CheckoutWrapper
-                                headerTitle={'Contact & Delivery Address'}
-                            >
-                                <AddressForm />
-                            </CheckoutWrapper>
-                            <CheckoutWrapper headerTitle={'Payment Method'}>
-                                <div className="flex flex-wrap gap-4 px-4">
-                                    <img
-                                        src="/images/googlePay.svg"
-                                        alt="google pay"
-                                        className="h-full w-auto cursor-pointer rounded border-2 bg-white px-3 py-1 brightness-50 grayscale"
-                                    />
-                                    <img
-                                        src="/images/paypal.svg"
-                                        alt="paypal"
-                                        className="h-full w-auto cursor-pointer rounded border-2 bg-white px-3 py-1 brightness-50 grayscale"
-                                    />
-                                    <img
-                                        src="/images/razorpay.svg"
-                                        alt="razorpay"
-                                        className="h-full w-auto cursor-pointer rounded border-2 px-3 py-1"
-                                    />
-                                    <img
-                                        src="/images/stripe.svg"
-                                        alt="stripe"
-                                        className="h-full w-auto cursor-pointer rounded border-2 px-3 py-1"
-                                    />
-                                </div>
-                            </CheckoutWrapper>
-                        </div>
-                        <OrderPriceSummary
-                            headerTitle="Order Summary"
-                            buttonText="Confirm Order"
-                        />
+                        <CheckoutForm />
                     </div>
                 </div>
             </div>
