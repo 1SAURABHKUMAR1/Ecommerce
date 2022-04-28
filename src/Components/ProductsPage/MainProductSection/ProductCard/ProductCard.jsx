@@ -1,8 +1,17 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+import { useCartProvider } from '../../../../Context/Cart/CartProvider';
+import { useAuthProvider } from '../../../../Context/Auth/AuthProvider';
+
+import axios from 'axios';
+
+import ErrorToast from '../../../../Toast/ErrorToast';
+
+import LoaderButton from '../../../UI/Loader/LoaderButton';
 
 const ProductCard = ({
     productName,
@@ -12,7 +21,77 @@ const ProductCard = ({
     productReview,
     productKey,
 }) => {
-    //TODO: cart and buy now
+    const [buttonText, setButtonText] = useState('Add To Cart');
+    const {
+        cartState: { cartItems },
+        cartDispatch,
+    } = useCartProvider();
+    const { userAuth } = useAuthProvider();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+
+    const addToCart = async () => {
+        try {
+            loadingHandler();
+
+            const responseData = await axios.post(
+                `${process.env.REACT_APP_API_URL}/user/cart`,
+                {
+                    cartItems: [
+                        {
+                            name: productName,
+                            quantity: 1,
+                            image: productImg,
+                            price: productPrice,
+                            productId: productKey,
+                        },
+                    ],
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${userAuth.token}`,
+                    },
+                },
+            );
+
+            cartDispatch({
+                type: 'UPDATE_CART_FROM_SERVER',
+                payload: responseData.data.cart?.cartItems,
+            });
+        } catch (error) {
+            ErrorToast('Something went wrong');
+            console.log(error);
+        }
+    };
+
+    const navigateToCart = () => {
+        navigate('/cart');
+    };
+
+    const addProduct = () => {
+        if (userAuth.login) {
+            buttonText === 'Add To Cart' ? addToCart() : navigateToCart();
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const loadingHandler = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1200);
+    };
+
+    useEffect(() => {
+        if (
+            cartItems?.findIndex(
+                (element) => element.productId === productKey,
+            ) !== -1
+        ) {
+            setButtonText('Buy Now');
+        }
+    }, [cartItems]);
 
     return (
         <>
@@ -53,14 +132,21 @@ const ProductCard = ({
                                     </span>
                                 </div>
                             </div>
-                            <button className="w-full rounded bg-indigo-500 py-1.5 px-1.5 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4">
-                                Add To Cart
+                        </Link>
+                        {loading ? (
+                            <LoaderButton />
+                        ) : (
+                            <button
+                                onClick={addProduct}
+                                className="w-full rounded bg-indigo-500 py-1.5 px-1.5 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4"
+                            >
+                                {buttonText}
                                 <FontAwesomeIcon
                                     icon={faArrowRight}
                                     className="ml-2"
                                 />
                             </button>
-                        </Link>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,20 @@
-import { useState, Fragment } from 'react';
+import { useState, Fragment, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useCartProvider } from '../../Context/Cart/CartProvider';
+import { useAuthProvider } from '../../Context/Auth/AuthProvider';
+
+import axios from 'axios';
+
+import ErrorToast from '../../Toast/ErrorToast';
+
+import LoaderButton from '../UI/Loader/LoaderButton';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const ProductDetail = ({ props }) => {
-    const { brand, name, rating, description, price } = props;
+    const { brand, name, rating, description, price, photos, _id } = props;
 
     const [ratingStars, setRatingStars] = useState([]);
 
@@ -30,7 +43,87 @@ const ProductDetail = ({ props }) => {
         }
     }
 
-    // TODO: buy  now and  add to cart and redirect to login if not signed up
+    const { userAuth } = useAuthProvider();
+    const {
+        cartState: { cartItems },
+        cartDispatch,
+    } = useCartProvider();
+
+    const [loading, setLoading] = useState();
+    const navigate = useNavigate();
+
+    const [isAddedToCart, setIsAddedToCart] = useState(false);
+
+    const addProductToCart = async () => {
+        try {
+            const responseData = await axios.post(
+                `${process.env.REACT_APP_API_URL}/user/cart`,
+                {
+                    cartItems: [
+                        {
+                            name: name,
+                            quantity: 1,
+                            image: photos[0],
+                            price: price,
+                            productId: _id,
+                        },
+                    ],
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${userAuth.token}`,
+                    },
+                },
+            );
+
+            cartDispatch({
+                type: 'UPDATE_CART_FROM_SERVER',
+                payload: responseData.data.cart?.cartItems,
+            });
+        } catch (error) {
+            ErrorToast('Something went wrong');
+            console.log(error);
+        }
+    };
+
+    const addToCart = () => {
+        if (userAuth.login) {
+            loadingHandler();
+            addProductToCart();
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const buyNow = () => {
+        if (userAuth.login) {
+            addProductToCart();
+            navigate('/cart');
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const toggleIsAddedToCart = () => {
+        setIsAddedToCart(!isAddedToCart);
+    };
+
+    const loadingHandler = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1200);
+    };
+
+    useEffect(() => {
+        if (
+            cartItems?.findIndex((element) => element.productId === _id) !== -1
+        ) {
+            toggleIsAddedToCart();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cartItems]);
 
     return (
         <>
@@ -65,12 +158,37 @@ const ProductDetail = ({ props }) => {
                     </span>
                 </div>
                 <div className="flex justify-center gap-3">
-                    <button className="ml-auto  w-full rounded border-0 bg-indigo-500 py-2 px-6 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4">
-                        Add To Cart
-                    </button>
-                    <button className="ml-auto  w-full rounded border-0 bg-indigo-500 py-2 px-6 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4">
-                        Buy Now
-                    </button>
+                    {!isAddedToCart && !loading && (
+                        <>
+                            <button
+                                onClick={addToCart}
+                                className="ml-auto  w-full rounded border-0 bg-indigo-500 py-2 px-6 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4"
+                            >
+                                Add To Cart
+                            </button>
+                            <button
+                                onClick={buyNow}
+                                className="ml-auto  w-full rounded border-0 bg-indigo-500 py-2 px-6 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4"
+                            >
+                                Buy Now
+                            </button>
+                        </>
+                    )}
+
+                    {loading && <LoaderButton />}
+
+                    {isAddedToCart && !loading && (
+                        <Link
+                            to="/cart"
+                            className="text-md block w-full rounded bg-indigo-600 px-4 py-3 text-center font-semibold  tracking-wider text-white transition duration-300 ease-in-out hover:bg-indigo-500 focus:bg-indigo-500 focus:outline-none"
+                        >
+                            Go To Cart
+                            <FontAwesomeIcon
+                                icon={faArrowRight}
+                                className="ml-2"
+                            />
+                        </Link>
+                    )}
                 </div>
             </div>
         </>

@@ -20,7 +20,6 @@ const HeaderSection = () => {
             {banner.map((item, index) => (
                 <Fragment key={index}>
                     {currentIndex === index && (
-                        // FIXME:
                         <CarouselCard carouselImage={banner[currentIndex]} />
                     )}
                 </Fragment>

@@ -7,7 +7,6 @@ const RecommendedCard = ({
 }) => {
     return (
         <>
-            {/* TODO: add to cart here */}
             <div
                 className={
                     'mt-1.5rem m-auto flex h-[35rem] flex-col-reverse items-center justify-between py-8 md:mt-0 md:grid md:h-[18rem] md:w-[87%] md:grid-cols-[1fr,1fr] lg:w-[90%]'
