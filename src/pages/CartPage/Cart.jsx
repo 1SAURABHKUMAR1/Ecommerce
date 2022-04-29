@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import LoaderMain from '../../Components/UI/Loader/LoaderMain/LoaderMain';
 
 import { Link, useNavigate } from 'react-router-dom';
 import CartForm from '../../Components/CartPage/CartForm';
@@ -15,6 +16,7 @@ const Cart = () => {
     const { userAuth } = useAuthProvider();
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!userAuth.login) {
@@ -22,35 +24,56 @@ const Cart = () => {
         }
     }, [userAuth]);
 
+    const loadingHandler = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1700);
+    };
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        loadingHandler();
+    }, []);
+
     return (
         <>
-            {cartState.cartItems.length === 0 ? (
-                <div className="my-4 flex w-full flex-1 flex-col items-center justify-center bg-gray-50">
-                    <h1 className="mb-5 text-center text-5xl font-bold tracking-wide text-gray-700">
-                        Cart Is Empty
-                    </h1>
-                    <div className="text-center">
-                        <Link
-                            to="/products"
-                            className="inline-block rounded bg-indigo-500 px-4 py-2 font-semibold text-white"
-                        >
-                            Add Products
-                        </Link>
-                    </div>
-                </div>
+            {loading ? (
+                <>
+                    <LoaderMain />
+                </>
             ) : (
-                <div className="m-0 flex flex-1 flex-col bg-gray-50">
-                    <div className="my-10 w-full px-4">
-                        <div className="container mx-auto md:w-[96%] md:max-w-screen-lg lg:w-[90%] lg:max-w-screen-xl lg:px-0">
-                            <h1 className="mb-8 text-center text-2xl font-semibold tracking-tight text-gray-700">
-                                Shopping Cart (1)
+                <>
+                    {cartState.cartItems.length === 0 ? (
+                        <div className="my-4 flex w-full flex-1 flex-col items-center justify-center bg-gray-50">
+                            <h1 className="mb-5 text-center text-5xl font-bold tracking-wide text-gray-700">
+                                Cart Is Empty
                             </h1>
-                            <div className="mdmid:flex-row flex flex-col gap-6">
-                                <CartForm />
+                            <div className="text-center">
+                                <Link
+                                    to="/products"
+                                    className="inline-block rounded bg-indigo-500 px-4 py-2 font-semibold text-white"
+                                >
+                                    Add Products
+                                </Link>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    ) : (
+                        <div className="m-0 flex flex-1 flex-col bg-gray-50">
+                            <div className="my-10 w-full px-4">
+                                <div className="container mx-auto md:w-[96%] md:max-w-screen-lg lg:w-[90%] lg:max-w-screen-xl lg:px-0">
+                                    <h1 className="mb-8 text-center text-2xl font-semibold tracking-tight text-gray-700">
+                                        Shopping Cart (1)
+                                    </h1>
+                                    <div className="mdmid:flex-row flex flex-col gap-6">
+                                        <CartForm />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
         </>
     );

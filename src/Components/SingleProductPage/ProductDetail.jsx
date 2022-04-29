@@ -98,7 +98,10 @@ const ProductDetail = ({ props }) => {
     const buyNow = () => {
         if (userAuth.login) {
             addProductToCart();
-            navigate('/cart');
+
+            setTimeout(() => {
+                navigate('/cart');
+            }, 1500);
         } else {
             navigate('/login');
         }

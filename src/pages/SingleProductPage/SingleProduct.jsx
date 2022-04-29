@@ -22,22 +22,28 @@ const Product = () => {
     useScrollToTop();
 
     const responsePage = async () => {
-        setLoading(true);
         try {
             const { data } = await axios.get(
                 `${process.env.REACT_APP_API_URL}/products/${productId}`,
             );
             setProductResponse(data.product);
             setIsValidPage(true);
-            setLoading(false);
         } catch (error) {
             setLoading(false);
-            setIsValidPage(false);
         }
+    };
+
+    const loadingHandler = () => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1700);
     };
 
     useEffect(() => {
         responsePage();
+        loadingHandler();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -45,16 +45,18 @@ const LoginForm = () => {
                 { Accept: 'application/json' },
             );
 
-            userAuthDispatch({
-                type: 'login',
-                payload: data,
-            });
+            setTimeout(() => {
+                userAuthDispatch({
+                    type: 'login',
+                    payload: data,
+                });
+                setUserDetails(initalUserDetails);
+                setLoading(false);
+                SuccessToast('Login Success');
 
-            setLoading(false);
-            setUserDetails(initalUserDetails);
-            SuccessToast('Login Success');
-            //TODO: navigate to where it came from
-            navigate('/');
+                //TODO: navigate to where it came from
+                navigate('/');
+            }, 1500);
         } catch (error) {
             if (error.response) {
                 error.response.status === 403 ? (
@@ -70,7 +72,6 @@ const LoginForm = () => {
             setLoading(false);
             setUserDetails(initalUserDetails);
         }
-        setLoading(false);
     };
 
     const handleSubmit = (event) => {

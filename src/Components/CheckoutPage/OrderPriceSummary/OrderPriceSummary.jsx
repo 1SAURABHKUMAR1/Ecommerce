@@ -64,21 +64,18 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                     },
                 );
 
+                SuccessToast('Order Successfull');
+                setLoading(false);
+                checkoutDispatch({
+                    type: 'DEFAULT_STATE',
+                });
+                cartDispatch({
+                    type: 'DEFAULT_CART',
+                });
+
                 setTimeout(() => {
-                    setLoading(false);
-
-                    SuccessToast('Order Successfull');
-
-                    checkoutDispatch({
-                        type: 'DEFAULT_STATE',
-                    });
-
-                    cartDispatch({
-                        type: 'DEFAULT_CART',
-                    });
-
                     navigate('/');
-                }, 1200);
+                }, 1000);
             } catch (error) {
                 ErrorToast('Something Went Wrong');
                 setLoading(false);

@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import LoaderMain from '../../Components/UI/Loader/LoaderMain/LoaderMain';
 
-import HeaderSection from '../../Components/LandingPage/HeaderSection/HeaderSection';
-import RecommendedProduct from '../../Components/LandingPage/RecommendedProduct/RecommendedProduct';
-import BestProduct from '../../Components/LandingPage/BestProduct/BestProducts';
+import { Link } from 'react-router-dom';
 
 import useScrollToTop from '../../Hooks/useScrollToTop';
 
-const Landing = () => {
+const Account = () => {
     useScrollToTop();
 
     const [loading, setLoading] = useState(false);
@@ -32,11 +30,17 @@ const Landing = () => {
                     <LoaderMain />
                 </>
             ) : (
-                <div className="flex flex-1 flex-col bg-gray-50 transition-all duration-100 ease-in-out">
-                    <div className="w-full px-8 pb-10">
-                        <HeaderSection />
-                        <BestProduct />
-                        <RecommendedProduct />
+                <div className="my-4 flex w-full flex-1 flex-col items-center justify-center bg-gray-50">
+                    <h1 className="mb-5 text-center text-3xl font-bold tracking-wide text-gray-700">
+                        Under Contruction
+                    </h1>
+                    <div className="text-center">
+                        <Link
+                            to="/"
+                            className="inline-block rounded bg-indigo-500 px-4 py-2 font-semibold text-white"
+                        >
+                            Go to Home
+                        </Link>
                     </div>
                 </div>
             )}
@@ -44,4 +48,4 @@ const Landing = () => {
     );
 };
 
-export default Landing;
+export default Account;

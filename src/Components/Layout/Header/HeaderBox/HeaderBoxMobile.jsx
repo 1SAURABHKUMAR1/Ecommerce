@@ -17,7 +17,10 @@ const HeaderBoxMobile = ({ handleToggle }) => {
 
         SuccessToast('Logout Success');
         handleToggle();
-        navigate('/');
+
+        setTimeout(() => {
+            navigate('/');
+        }, 1500);
     };
 
     useEffect(() => {

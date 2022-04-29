@@ -138,7 +138,7 @@ const ProductCard = ({
                         ) : (
                             <button
                                 onClick={addProduct}
-                                className="w-full rounded bg-indigo-500 py-1.5 px-1.5 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4"
+                                className="w-full rounded bg-indigo-500 py-3 px-1.5 text-center text-white hover:bg-indigo-600 focus:outline-none lg:px-4"
                             >
                                 {buttonText}
                                 <FontAwesomeIcon

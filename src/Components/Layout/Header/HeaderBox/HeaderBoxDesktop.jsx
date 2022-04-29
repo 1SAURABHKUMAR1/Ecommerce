@@ -17,7 +17,9 @@ const NavbarBoxDesktop = ({ handleToggle, navbarOpen, setNavbarOpen }) => {
 
         SuccessToast('Logout Success');
         setNavbarOpen(false);
-        navigate('/');
+        setTimeout(() => {
+            navigate('/');
+        }, 1500);
     };
 
     useEffect(() => {
