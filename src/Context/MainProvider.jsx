@@ -5,6 +5,7 @@ import { AuthProvider } from './Auth/AuthProvider';
 import { BrowserRouter } from 'react-router-dom';
 import { FilterProvider } from './Filter/FilterProvider';
 import { CartProvider } from './Cart/CartProvider';
+import { CheckoutProvider } from './Checkout/CheckoutProvider';
 
 const MainProvider = ({ children }) => {
     return (
@@ -14,7 +15,9 @@ const MainProvider = ({ children }) => {
                 <AuthProvider>
                     <ProductProvider>
                         <FilterProvider>
-                            <CartProvider>{children}</CartProvider>
+                            <CartProvider>
+                                <CheckoutProvider>{children}</CheckoutProvider>
+                            </CartProvider>
                         </FilterProvider>
                     </ProductProvider>
                 </AuthProvider>

@@ -25,6 +25,16 @@ const CartReducer = (cartState, action) => {
                 ),
             };
 
+        case 'DEFAULT_PRICE':
+            return {
+                ...cartState,
+                taxAmount: 0,
+                shippingAmount: 0,
+                discount: 0,
+                totalAmount: 0,
+                totalQuantity: 0,
+            };
+
         case 'DEFAULT_CART':
             return {
                 cartItems: [],

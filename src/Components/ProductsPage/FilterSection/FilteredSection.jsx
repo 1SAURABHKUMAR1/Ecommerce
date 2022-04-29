@@ -10,6 +10,7 @@ import RatingsFilter from './RatingsFilter';
 import SortFilter from './SortFilter';
 
 import { useFilterProvider } from '../../../Context/Filter/FilterProvider';
+import { useEffect } from 'react';
 
 const FilteredSection = () => {
     const [showFilters, setShowFilters] = useState(false);
@@ -19,6 +20,12 @@ const FilteredSection = () => {
     const toggleFilter = () => {
         setShowFilters(!showFilters);
     };
+
+    useEffect(() => {
+        filterDispatch({
+            type: 'CLEAR_FILTER',
+        });
+    }, []);
 
     return (
         <>

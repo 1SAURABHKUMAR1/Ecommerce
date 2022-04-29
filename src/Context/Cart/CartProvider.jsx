@@ -1,25 +1,16 @@
-import { createContext, useContext, useReducer } from 'react';
+import { useEffect, createContext, useContext, useReducer } from 'react';
 import CartReducer from './CartReducer';
 
 import { useAuthProvider } from '../Auth/AuthProvider';
-import { useEffect } from 'react';
 import axios from 'axios';
 
 const intialCartState = {
-    cartItems: [
-        // {
-        //     productId: null,
-        //     price: 0,
-        //     image: null,
-        //     quantity: 0,
-        //     name: null,
-        // },
-    ],
+    cartItems: [],
     taxAmount: 0,
     discount: 0,
     shippingAmount: 0,
     totalAmount: 0,
-    totalQuantity: 0, // for checkout api send totalAmount + shipping Amount
+    totalQuantity: 0,
 };
 
 const CartContext = createContext({});

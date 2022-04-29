@@ -36,18 +36,6 @@ const ProductImage = ({ props }) => {
                                 onClick={changeImage}
                             />
                         ))}
-                    {/* <img
-                        loading="lazy"
-                        className="mx-auto w-1/3 rounded-md  object-cover lg:h-[70%]"
-                        src="images/1.png"
-                        alt="Nike Air"
-                    />
-                    <img
-                        loading="lazy"
-                        className="mx-auto w-1/3 rounded-md  object-cover lg:h-[70%]"
-                        src="images/1.png"
-                        alt="Nike Air"
-                    /> */}
                 </div>
             </div>
         </>

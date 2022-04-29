@@ -19,8 +19,6 @@ const CartProductCard = (props) => {
 
     const { userAuth } = useAuthProvider();
 
-    // TODO: remove increment decrement and checkout redirect
-
     const incrementQuantity = async () => {
         try {
             const responseData = await axios.put(
@@ -63,6 +61,11 @@ const CartProductCard = (props) => {
                 type: 'UPDATE_CART_FROM_SERVER',
                 payload: responseData.data.cart?.cartItems,
             });
+
+            cartItems.length === 1 &&
+                cartDispatch({
+                    type: 'DEFAULT_PRICE',
+                });
         } catch (error) {
             ErrorToast('Something went wrong');
             console.log(error);
@@ -84,6 +87,11 @@ const CartProductCard = (props) => {
                 type: 'UPDATE_CART_FROM_SERVER',
                 payload: responseData.data.cart?.cartItems,
             });
+
+            cartItems.length === 1 &&
+                cartDispatch({
+                    type: 'DEFAULT_PRICE',
+                });
         } catch (error) {
             ErrorToast('Something went wrong');
             console.log(error);

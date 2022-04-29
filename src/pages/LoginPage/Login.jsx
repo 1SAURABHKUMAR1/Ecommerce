@@ -1,8 +1,8 @@
-import React from 'react';
-
 import LoginForm from '../../Components/LoginPage/LoginForm';
 
 import useScrollToTop from '../../Hooks/useScrollToTop';
+
+import login from '../../Data/Svg/login.svg';
 
 const Signin = () => {
     useScrollToTop();
@@ -19,7 +19,7 @@ const Signin = () => {
                     <div className="m-auto hidden w-full max-w-md lg:block lg:w-2/5">
                         <img
                             loading="lazy"
-                            src="/images/login.svg"
+                            src={login}
                             alt=""
                             className="m-auto block h-80"
                         />

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-const CheckoutWrapper = ({ headerTitle, children }) => {
+const CheckoutWrapper = ({ headerTitle, iconBlue = false, children }) => {
     const [show, setShow] = useState(false);
 
     const toogleShow = () => {
@@ -21,7 +21,9 @@ const CheckoutWrapper = ({ headerTitle, children }) => {
                     </h1>
                     <FontAwesomeIcon
                         icon={faCircleCheck}
-                        className="h-6 w-6 pr-3 text-indigo-600"
+                        className={`h-6 w-6 pr-3 ${
+                            iconBlue ? 'text-indigo-600' : 'text-gray-500'
+                        }`}
                     />
                 </div>
                 {show && (

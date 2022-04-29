@@ -2,6 +2,8 @@ import SignupForm from '../../Components/SignupPage/SignupForm';
 
 import useScrollToTop from '../../Hooks/useScrollToTop';
 
+import signup from '../../Data/Svg/signup.svg';
+
 const SignUp = () => {
     useScrollToTop();
 
@@ -16,8 +18,8 @@ const SignUp = () => {
                     </div>
                     <div className="m-auto hidden w-full max-w-md lg:block lg:w-2/5">
                         <img
-                            src="/images/signup.svg"
-                            alt=""
+                            src={signup}
+                            alt="signupimage"
                             loading="lazy"
                             className="m-auto block w-5/6"
                         />

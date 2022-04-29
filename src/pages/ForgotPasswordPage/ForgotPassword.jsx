@@ -2,6 +2,8 @@ import ForgotPasswordForm from '../../Components/ForgotPasswordPage/ForgotPasswo
 
 import useScrollToTop from '../../Hooks/useScrollToTop';
 
+import forgotpassword from '../../Data/Svg/forgotpassword.svg';
+
 const ForgotPassword = () => {
     useScrollToTop();
 
@@ -15,7 +17,7 @@ const ForgotPassword = () => {
                 </div>
                 <div className="m-auto hidden w-full max-w-md lg:block lg:w-2/5">
                     <img
-                        src="/images/forgotpassword.svg"
+                        src={forgotpassword}
                         alt=""
                         loading="lazy"
                         className="m-auto block h-80"
