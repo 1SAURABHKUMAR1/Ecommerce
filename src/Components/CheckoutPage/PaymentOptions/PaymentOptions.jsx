@@ -41,13 +41,11 @@ const PaymentOptions = () => {
         <>
             <CheckoutWrapper headerTitle={'Payment Method'} iconBlue={isValid}>
                 <div className="flex flex-wrap gap-4 px-4">
-                    <button disabled>
-                        <img
-                            src={googlePay}
-                            alt="google pay"
-                            className="h-full w-auto cursor-not-allowed rounded border-2 bg-white px-3 py-1 brightness-50 grayscale"
-                        />
-                    </button>
+                    <img
+                        src={googlePay}
+                        alt="google pay"
+                        className="h-full w-auto cursor-not-allowed rounded border-2 bg-white px-3 py-1 brightness-50 grayscale"
+                    />
                     <img
                         src={paypal}
                         alt="paypal"
@@ -56,15 +54,17 @@ const PaymentOptions = () => {
                     <img
                         src={razorpay}
                         alt="razorpay"
-                        className={`h-full w-auto cursor-pointer rounded border-2 bg-white px-3 py-1 brightness-50 grayscale`}
+                        onClick={() => addPaymentMode('razorpay')}
+                        className={`h-full w-auto cursor-pointer rounded border-2 px-3 py-1 ${
+                            paymentMode === 'razorpay'
+                                ? 'border-indigo-700'
+                                : ''
+                        }`}
                     />
                     <img
                         src={stripe}
+                        className="h-full w-auto cursor-pointer rounded border-2 bg-white px-3 py-1 brightness-50 grayscale"
                         alt="stripe"
-                        onClick={() => addPaymentMode('stripe')}
-                        className={`h-full w-auto cursor-pointer rounded border-2 px-3 py-1 ${
-                            paymentMode === 'stripe' ? 'border-indigo-700' : ''
-                        }`}
                     />
                 </div>
             </CheckoutWrapper>

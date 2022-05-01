@@ -22,7 +22,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <ul className="mt-2  w-[90%] text-center">
+                <ul className="m-auto mt-2 w-[90%] text-center">
                     <li className="mr-2 mt-1 inline-block text-gray-900 hover:scale-125 focus:scale-125  focus:outline-none ">
                         <Link
                             to="https://www.github.com/1SAURABHKUMAR1"

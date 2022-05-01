@@ -33,11 +33,63 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
     const [loading, setLoading] = useState(false);
     const [allFieldValid, setAllFieldValid] = useState(false);
 
-    const checkoutHandler = async () => {
+    // flow -> generateOrderID creates orderID -> handleCheckout handles razorpay pop up and gernates payment id then generateOrder takes paymnet and creates a order
+
+    // generate order id for razor pay
+    const generateOrderID = async () => {
+        setLoading(true);
+
+        try {
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}/capturerazorpay`,
+                {
+                    amount: (totalAmount + shippingAmount) * 100,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${userAuth.token}`,
+                    },
+                },
+            );
+
+            return response.data.order.id;
+        } catch (error) {
+            ErrorToast('Something Went Wrong!');
+            setLoading(false);
+            return;
+        }
+    };
+
+    // gets order id then gets payment id from razoypay and
+    const handleCheckout = async () => {
+        const orderId = await generateOrderID();
+
+        if (!orderId) {
+            return;
+        }
+
+        const key = `${process.env.REACT_APP_RAZORPAY_KEY}`;
+
+        const options = {
+            key: key,
+            amount: (totalAmount + shippingAmount) * 100,
+            order_id: orderId,
+            currency: 'INR',
+            name: 'Lens Store',
+            description: 'Payment for Glasses',
+            handler: async function (response) {
+                await generateOrder(response.razorpay_payment_id);
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    };
+
+    // handle order api for backend and creates checkout
+    const generateOrder = async (paymentId) => {
         if (allFieldValid) {
             try {
-                setLoading(true);
-
                 await axios.post(
                     `${process.env.REACT_APP_API_URL}/order/create`,
                     {
@@ -50,7 +102,7 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                             country: shippingInfo.country,
                         },
                         paymentInfo: {
-                            id: `reciept#${Math.floor(Math.random() * 8 + 10)}`,
+                            id: paymentId,
                         },
                         taxAmount: taxAmount,
                         shippingAmount: shippingAmount,
@@ -66,14 +118,14 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
 
                 SuccessToast('Order Successfull');
                 setLoading(false);
-                checkoutDispatch({
-                    type: 'DEFAULT_STATE',
-                });
-                cartDispatch({
-                    type: 'DEFAULT_CART',
-                });
 
                 setTimeout(() => {
+                    checkoutDispatch({
+                        type: 'DEFAULT_STATE',
+                    });
+                    cartDispatch({
+                        type: 'DEFAULT_CART',
+                    });
                     navigate('/');
                 }, 1000);
             } catch (error) {
@@ -90,10 +142,27 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
         }
     };
 
+    // load script for razorpay
+    const loadScript = (src) => {
+        return new Promise((resolve) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    };
+
     useEffect(() => {
         if (!userAuth.login) {
             navigate('/login');
         }
+
+        loadScript('https://checkout.razorpay.com/v1/checkout.js');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -165,7 +234,7 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                 ) : (
                     <button
                         className="text-md  block w-full rounded bg-indigo-600 px-4 py-3 font-semibold  tracking-wider text-white transition duration-300 ease-in-out hover:bg-indigo-500 focus:bg-indigo-500 focus:outline-none"
-                        onClick={checkoutHandler}
+                        onClick={handleCheckout}
                     >
                         {buttonText}
                     </button>

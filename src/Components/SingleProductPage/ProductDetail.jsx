@@ -63,7 +63,7 @@ const ProductDetail = ({ props }) => {
                         {
                             name: name,
                             quantity: 1,
-                            image: photos[0],
+                            image: photos[0].secure_url,
                             price: price,
                             productId: _id,
                         },
@@ -97,6 +97,7 @@ const ProductDetail = ({ props }) => {
 
     const buyNow = () => {
         if (userAuth.login) {
+            loadingHandler();
             addProductToCart();
 
             setTimeout(() => {
@@ -116,7 +117,7 @@ const ProductDetail = ({ props }) => {
 
         setTimeout(() => {
             setLoading(false);
-        }, 1200);
+        }, 1000);
     };
 
     useEffect(() => {
