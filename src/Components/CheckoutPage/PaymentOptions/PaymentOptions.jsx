@@ -35,6 +35,7 @@ const PaymentOptions = () => {
         checkoutDispatch({
             type: 'DEFAULT_STATE',
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -44,6 +45,7 @@ const PaymentOptions = () => {
                     <img
                         src={googlePay}
                         alt="google pay"
+                        loading=""
                         className="h-full w-auto cursor-not-allowed rounded border-2 bg-white px-3 py-1 brightness-50 grayscale"
                     />
                     <img
