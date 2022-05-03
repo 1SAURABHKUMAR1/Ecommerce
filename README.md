@@ -42,7 +42,7 @@
 
 **Client:** React, React Router, Context, Tailwind
 
-**Server:** Nodejs Express MongoDB Cloudinary SwaggerUI , RazorPay(Under Contruction)
+**Server:** Nodejs Express MongoDB Cloudinary SwaggerUI , RazorPay
 
 [Backend](https://github.com/1SAURABHKUMAR1/Ecommerce-Backend)
 
