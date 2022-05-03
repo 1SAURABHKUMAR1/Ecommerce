@@ -9,7 +9,7 @@ import LoaderButton from '../UI/Loader/LoaderButton';
 import ErrorToast from '../../Toast/ErrorToast';
 import SuccessToast from '../../Toast/SuccessToast';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
 
@@ -23,6 +23,8 @@ const LoginForm = () => {
     const [userDetails, setUserDetails] = useState(initalUserDetails);
     const { userAuth, userAuthDispatch } = useAuthProvider();
     const navigate = useNavigate();
+    const location = useLocation();
+    const fromLocation = location.state?.from ?? '/';
 
     const setInputFieldData = (event) => {
         const userDetail = event.target.name;
@@ -54,8 +56,7 @@ const LoginForm = () => {
                 setLoading(false);
                 SuccessToast('Login Success');
 
-                //TODO: navigate to where it came from
-                navigate('/');
+                navigate(fromLocation, { replace: true });
             }, 1500);
         } catch (error) {
             if (error.response) {

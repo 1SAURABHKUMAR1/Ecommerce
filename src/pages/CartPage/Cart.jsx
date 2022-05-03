@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import LoaderMain from '../../Components/UI/Loader/LoaderMain/LoaderMain';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import CartForm from '../../Components/CartPage/CartForm';
 
 import useScrollToTop from '../../Hooks/useScrollToTop';
@@ -16,12 +16,14 @@ const Cart = () => {
     const { userAuth } = useAuthProvider();
 
     const navigate = useNavigate();
+    const location = useLocation();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (!userAuth.login) {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userAuth]);
 
     const loadingHandler = () => {
@@ -33,8 +35,8 @@ const Cart = () => {
     };
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         loadingHandler();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

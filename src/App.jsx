@@ -15,6 +15,9 @@ import SingleProduct from './pages/SingleProductPage/SingleProduct';
 import Cart from './pages/CartPage/Cart';
 import Checkout from './pages/CheckoutPage/Checkout';
 import Account from './pages/AccountPage/Account';
+import Profile from './pages/ProfilePage/Profile';
+import Order from './pages/OrderPage/Order';
+import Support from './pages/SupportPage/Support';
 
 const App = () => {
     return (
@@ -36,8 +39,11 @@ const App = () => {
                     />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<Checkout />} />
-                    <Route path="/account/profile" element={<Account />} />
-                    <Route path="/account/orders" element={<Account />} />
+                    <Route path="/account" element={<Account />}>
+                        <Route path="profile" element={<Profile />} />
+                        <Route path="orders" element={<Order />} />
+                        <Route path="support" element={<Support />} />
+                    </Route>
                     <Route exact path="*" element={<PageNotFound />} />
                 </Routes>
                 <Footer />
@@ -47,8 +53,3 @@ const App = () => {
 };
 
 export default App;
-
-// TODO: ACCOUNT PAGE CENTER DIFFERENT use Outlet
-// /account/profile -> for profile
-// /account/orders ->  orders
-// /account/support -> for support under contruction only

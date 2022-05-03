@@ -1,5 +1,5 @@
 import { useState, Fragment, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useCartProvider } from '../../Context/Cart/CartProvider';
 import { useAuthProvider } from '../../Context/Auth/AuthProvider';
@@ -51,6 +51,7 @@ const ProductDetail = ({ props }) => {
 
     const [loading, setLoading] = useState();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [isAddedToCart, setIsAddedToCart] = useState(false);
 
@@ -91,7 +92,7 @@ const ProductDetail = ({ props }) => {
             loadingHandler();
             addProductToCart();
         } else {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
         }
     };
 
@@ -104,7 +105,7 @@ const ProductDetail = ({ props }) => {
                 navigate('/cart');
             }, 1500);
         } else {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
         }
     };
 

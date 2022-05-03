@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -28,6 +28,7 @@ const ProductCard = ({
     } = useCartProvider();
     const { userAuth } = useAuthProvider();
     const navigate = useNavigate();
+    const location = useLocation();
     const [loading, setLoading] = useState(false);
 
     const addToCart = async () => {
@@ -72,7 +73,7 @@ const ProductCard = ({
         if (userAuth.login) {
             buttonText === 'Add To Cart' ? addToCart() : navigateToCart();
         } else {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
         }
     };
 

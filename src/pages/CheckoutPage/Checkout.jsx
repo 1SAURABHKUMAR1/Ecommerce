@@ -7,7 +7,7 @@ import CheckoutForm from '../../Components/CheckoutPage/CheckoutForm';
 import { useCartProvider } from '../../Context/Cart/CartProvider';
 import { useAuthProvider } from '../../Context/Auth/AuthProvider';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import LoaderMain from '../../Components/UI/Loader/LoaderMain/LoaderMain';
@@ -19,6 +19,7 @@ const Checkout = () => {
     const { userAuth } = useAuthProvider();
 
     const navigate = useNavigate();
+    const location = useLocation();
     const [loading, setLoading] = useState(false);
 
     const loadingHandler = () => {
@@ -31,7 +32,7 @@ const Checkout = () => {
 
     useEffect(() => {
         if (!userAuth.login) {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
         }
     }, [userAuth]);
 

@@ -49,7 +49,6 @@ const SignupForm = () => {
             userDetails.email.match(emailRegex) &&
             userDetails.password.match(passwordRegex)
         ) {
-            //TODO: loader page loader
             const formData = new FormData();
             formData.append('photo', userDetails.photo);
             formData.append('name', userDetails.name);
@@ -83,7 +82,6 @@ const SignupForm = () => {
                 });
                 SuccessToast('Signup Success');
                 setUserDetails(initalUserDetails);
-                // TODO: navigate to where it came from
                 navigate('/');
             }
 

@@ -33,9 +33,9 @@
 -   Various Filters
 -   Cart Management
 -   Placing an Order
--   Razorpay support (Under Contruction)
+-   Razorpay support
 -   User Account Page (Under Contruction)
--   Managing all Orders (Under Contruction)
+-   Managing all Orders
 -   Support Page (Under Contruction)
 
 ## Tech Stack

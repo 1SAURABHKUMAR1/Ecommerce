@@ -10,7 +10,7 @@ import ErrorToast from '../../../Toast/ErrorToast';
 import SuccessToast from '../../../Toast/SuccessToast';
 
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 const OrderPriceSummary = ({ headerTitle, buttonText }) => {
     const {
@@ -30,6 +30,7 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
     } = useCheckoutProvider();
     const { userAuth } = useAuthProvider();
     const navigate = useNavigate();
+    const location = useLocation();
     const [loading, setLoading] = useState(false);
     const [allFieldValid, setAllFieldValid] = useState(false);
 
@@ -159,7 +160,7 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
 
     useEffect(() => {
         if (!userAuth.login) {
-            navigate('/login');
+            navigate('/login', { state: { from: location.pathname } });
         }
 
         loadScript('https://checkout.razorpay.com/v1/checkout.js');

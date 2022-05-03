@@ -56,7 +56,7 @@ const NavbarBoxDesktop = ({ handleToggle, navbarOpen, setNavbarOpen }) => {
                     } z-20`}
                 >
                     <NavLink
-                        to="/"
+                        to="/account/profile"
                         onClick={handleToggle}
                         className="block px-2 py-2 text-gray-900 hover:rounded hover:bg-slate-200"
                     >
@@ -64,7 +64,7 @@ const NavbarBoxDesktop = ({ handleToggle, navbarOpen, setNavbarOpen }) => {
                     </NavLink>
 
                     <NavLink
-                        to="/orders"
+                        to="/account/orders"
                         onClick={handleToggle}
                         className="block px-2 py-2 text-gray-900 hover:rounded hover:bg-slate-200"
                     >

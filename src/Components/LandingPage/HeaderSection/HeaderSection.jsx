@@ -10,9 +10,13 @@ const HeaderSection = () => {
     const banner = [banner1, banner2, banner3];
 
     useEffect(() => {
-        setTimeout(() => {
+        const caraoselId = setTimeout(() => {
             setCurrentIndex((currentIndex + 1) % banner.length);
         }, 4000);
+
+        return () => {
+            clearTimeout(caraoselId);
+        };
     }, [banner.length, currentIndex]);
 
     return (

@@ -44,7 +44,7 @@ const HeaderBoxMobile = ({ handleToggle }) => {
 
                 <div className="mt-3">
                     <NavLink
-                        to="/"
+                        to="/account/profile"
                         onClick={handleToggle}
                         className="mt-1 block px-2 py-2 font-semibold text-white hover:rounded hover:bg-slate-50 hover:text-gray-800"
                     >
@@ -52,7 +52,7 @@ const HeaderBoxMobile = ({ handleToggle }) => {
                     </NavLink>
 
                     <NavLink
-                        to="/"
+                        to="/account/orders"
                         onClick={handleToggle}
                         className="mt-1 block px-2 py-2 font-semibold text-white  hover:rounded hover:bg-slate-50 hover:text-gray-800"
                     >
