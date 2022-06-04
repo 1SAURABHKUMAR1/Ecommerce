@@ -27,11 +27,9 @@ const CartProductCard = (props) => {
                     action: 'increment',
                 },
                 {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+                    Authorization: `Bearer ${userAuth.token}`,
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
             );
 
@@ -53,11 +51,9 @@ const CartProductCard = (props) => {
                     action: 'decrement',
                 },
                 {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+                    Authorization: `Bearer ${userAuth.token}`,
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
             );
 

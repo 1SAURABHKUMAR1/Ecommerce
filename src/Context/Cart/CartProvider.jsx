@@ -24,11 +24,9 @@ const CartProvider = ({ children }) => {
             const responseCart = await axios.get(
                 `${process.env.REACT_APP_API_URL}/user/cart`,
                 {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+                    Authorization: `Bearer ${userAuth.token}`,
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
             );
 

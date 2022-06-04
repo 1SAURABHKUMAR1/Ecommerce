@@ -45,10 +45,8 @@ const LoginForm = () => {
                 `${process.env.REACT_APP_API_URL}/login`,
                 userDetails,
                 {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
             );
 

@@ -71,11 +71,9 @@ const ProductDetail = ({ props }) => {
                     ],
                 },
                 {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+                    Authorization: `Bearer ${userAuth.token}`,
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                 },
             );
 
