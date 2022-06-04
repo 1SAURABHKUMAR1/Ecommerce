@@ -24,7 +24,12 @@ const ForgotPasswordForm = () => {
             await axios.post(
                 `${process.env.REACT_APP_API_URL}/forgotpassword`,
                 { email },
-                { Accept: 'application/json' },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                },
             );
 
             setLoading(false);

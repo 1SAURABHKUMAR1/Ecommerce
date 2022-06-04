@@ -17,6 +17,12 @@ const ProductProvider = ({ children }) => {
     const responseProducts = async () => {
         const response = await axios.get(
             `${process.env.REACT_APP_API_URL}/products`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+            },
         );
 
         setProductResponse(response);

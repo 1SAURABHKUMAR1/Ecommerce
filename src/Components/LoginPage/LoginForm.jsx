@@ -44,7 +44,12 @@ const LoginForm = () => {
             let { data } = await axios.post(
                 `${process.env.REACT_APP_API_URL}/login`,
                 userDetails,
-                { Accept: 'application/json' },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                },
             );
 
             setTimeout(() => {

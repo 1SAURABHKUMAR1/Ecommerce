@@ -21,6 +21,8 @@ const OrderProvider = ({ children }) => {
                 {
                     headers: {
                         Authorization: `Bearer ${userAuth.token}`,
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
                     },
                 },
             );
