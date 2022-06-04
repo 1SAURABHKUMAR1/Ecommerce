@@ -26,8 +26,10 @@ const Product = () => {
             const { data } = await axios.get(
                 `${process.env.REACT_APP_API_URL}/products/${productId}`,
                 {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
                 },
             );
             setProductResponse(data.product);

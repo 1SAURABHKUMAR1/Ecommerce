@@ -47,9 +47,11 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                     amount: (totalAmount + shippingAmount) * 100,
                 },
                 {
-                    Authorization: `Bearer ${userAuth.token}`,
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
+                    headers: {
+                        Authorization: `Bearer ${userAuth.token}`,
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
                 },
             );
 
@@ -111,9 +113,11 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                         orderItems: cartItems,
                     },
                     {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
+                        headers: {
+                            Authorization: `Bearer ${userAuth.token}`,
+                            'Content-Type': 'application/json',
+                            Accept: 'application/json',
+                        },
                     },
                 );
 

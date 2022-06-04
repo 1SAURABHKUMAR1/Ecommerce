@@ -19,9 +19,11 @@ const OrderProvider = ({ children }) => {
             const response = await axios.get(
                 `${process.env.REACT_APP_API_URL}/myorder`,
                 {
-                    Authorization: `Bearer ${userAuth.token}`,
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
+                    headers: {
+                        Authorization: `Bearer ${userAuth.token}`,
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
                 },
             );
 

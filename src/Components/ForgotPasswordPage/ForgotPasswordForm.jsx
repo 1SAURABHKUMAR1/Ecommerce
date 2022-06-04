@@ -25,8 +25,10 @@ const ForgotPasswordForm = () => {
                 `${process.env.REACT_APP_API_URL}/forgotpassword`,
                 { email },
                 {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
                 },
             );
 
