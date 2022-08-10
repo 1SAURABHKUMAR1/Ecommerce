@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
@@ -9,6 +8,7 @@ import ProductNotFound from '../../Components/SingleProductPage/ProductNotFound'
 import LoaderMain from '../../Components/UI/Loader/LoaderMain/LoaderMain';
 
 import useScrollToTop from '../../Hooks/useScrollToTop';
+import Axios from '../../Utils/Axios';
 
 const Product = () => {
     const location = useLocation();
@@ -23,15 +23,8 @@ const Product = () => {
 
     const responsePage = async () => {
         try {
-            const { data } = await axios.get(
-                `${process.env.REACT_APP_API_URL}/products/${productId}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                },
-            );
+            const { data } = await Axios.get(`/products/${productId}`);
+
             setProductResponse(data.product);
             setIsValidPage(true);
         } catch (error) {

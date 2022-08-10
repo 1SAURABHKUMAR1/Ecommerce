@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCartProvider } from '../../Context/Cart/CartProvider';
 import { useAuthProvider } from '../../Context/Auth/AuthProvider';
 
-import axios from 'axios';
+import Axios from '../../Utils/Axios';
 
 import ErrorToast from '../../Toast/ErrorToast';
 
@@ -18,30 +18,35 @@ const ProductDetail = ({ props }) => {
 
     const [ratingStars, setRatingStars] = useState([]);
 
-    for (let ratingIndex = 1; ratingIndex <= 5; ratingIndex++) {
-        if (ratingStars.length < 5) {
-            ratingStars.push(
-                <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    key={ratingIndex + 100}
-                    strokeWidth="2"
-                    className={`fillCurrent h-5 w-5 ${
-                        ratingIndex <= rating
-                            ? 'text-indigo-500'
-                            : 'text-gray-300'
-                    }`}
-                    viewBox="0 0 24 24"
-                >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                </svg>,
-            );
-        } else {
-            setRatingStars([]);
+    useEffect(() => {
+        for (let ratingIndex = 1; ratingIndex <= 5; ratingIndex++) {
+            if (ratingStars.length < 5) {
+                setRatingStars((prev) => [
+                    ...prev,
+
+                    <svg
+                        fill="currentColor"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        key={ratingIndex + 100}
+                        strokeWidth="2"
+                        className={`fillCurrent h-5 w-5 ${
+                            ratingIndex <= rating
+                                ? 'text-indigo-500'
+                                : 'text-gray-300'
+                        }`}
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>,
+                ]);
+            } else {
+                setRatingStars([]);
+            }
         }
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [rating]);
 
     const { userAuth } = useAuthProvider();
     const {
@@ -57,7 +62,7 @@ const ProductDetail = ({ props }) => {
 
     const addProductToCart = async () => {
         try {
-            const responseData = await axios.post(
+            const { data } = await Axios.post(
                 `${process.env.REACT_APP_API_URL}/user/cart`,
                 {
                     cartItems: [
@@ -73,15 +78,13 @@ const ProductDetail = ({ props }) => {
                 {
                     headers: {
                         Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
                     },
                 },
             );
 
             cartDispatch({
                 type: 'UPDATE_CART_FROM_SERVER',
-                payload: responseData.data.cart?.cartItems,
+                payload: data.cart?.cartItems,
             });
         } catch (error) {
             ErrorToast('Something went wrong');

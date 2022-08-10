@@ -10,8 +10,8 @@ import ErrorToast from '../../Toast/ErrorToast';
 import SuccessToast from '../../Toast/SuccessToast';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useEffect } from 'react';
+import Axios from '../../Utils/Axios';
 
 const initalUserDetails = {
     email: '',
@@ -41,16 +41,7 @@ const LoginForm = () => {
     const handleLogin = async () => {
         try {
             setLoading(true);
-            let { data } = await axios.post(
-                `${process.env.REACT_APP_API_URL}/login`,
-                userDetails,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                },
-            );
+            let { data } = await Axios.post('/login', userDetails);
 
             setTimeout(() => {
                 userAuthDispatch({
@@ -65,11 +56,8 @@ const LoginForm = () => {
             }, 1500);
         } catch (error) {
             if (error.response) {
-                error.response.status === 403 ? (
-                    ErrorToast(error.response.data.message)
-                ) : (
-                    <></>
-                );
+                error.response.status === 403 &&
+                    ErrorToast(error.response.data.message);
             } else {
                 ErrorToast('Login Failed');
             }

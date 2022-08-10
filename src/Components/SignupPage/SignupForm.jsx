@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom';
 import './FormInputButton.module.css';
 import LoaderButton from '../UI/Loader/LoaderButton';
 
+import Axios from '../../Utils/Axios';
+
 const initalUserDetails = {
     name: '',
     email: '',
@@ -55,40 +57,28 @@ const SignupForm = () => {
             formData.append('email', userDetails.email);
             formData.append('password', userDetails.password);
 
-            setLoading(true);
+            try {
+                setLoading(true);
+                let { data } = await Axios.post('/signup', formData);
 
-            let response = await fetch(
-                `${process.env.REACT_APP_API_URL}/signup`,
-                {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                    },
-                    body: formData,
-                },
-            )
-                .then((response) => response.json())
-                .catch((error) => {
-                    ErrorToast(`Login Failed`);
-                    setLoading(false);
-                    setUserDetails(initalUserDetails);
-                    console.log(error);
-                });
+                setTimeout(() => {
+                    userAuthDispatch({
+                        type: 'login',
+                        payload: data,
+                    });
+                    SuccessToast('Signup Success');
+                    navigate('/');
+                }, 1500);
+            } catch (error) {
+                if (error.response) {
+                    error.response.status === 403 &&
+                        ErrorToast(error.response.data.message);
+                } else {
+                    ErrorToast('Signup Failed');
+                }
 
-            if (response.success === true) {
-                userAuthDispatch({
-                    type: 'login',
-                    payload: response,
-                });
-                SuccessToast('Signup Success');
-                setUserDetails(initalUserDetails);
-                navigate('/');
-            }
-
-            if (response.success === false) {
+                console.log(error);
                 setLoading(false);
-                setUserDetails(initalUserDetails);
-                ErrorToast(response.message);
             }
         } else {
             ErrorToast('Enter a strong password');
@@ -104,6 +94,11 @@ const SignupForm = () => {
         if (userAuth.login === true) {
             navigate('/');
         }
+
+        return () => {
+            setUserDetails(initalUserDetails);
+            setLoading(false);
+        };
         // eslint-disable-next-line
     }, []);
 

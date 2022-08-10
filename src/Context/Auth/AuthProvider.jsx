@@ -20,7 +20,7 @@ const initalUserState = {
 const AuthContext = createContext(initalUserState);
 
 const AuthProvider = ({ children }) => {
-    const [userData, setUserData] = useState({
+    const [userData] = useState({
         login: useGetLocalStorage('login') ?? initalUserState.login,
         token: useGetLocalStorage('token') ?? initalUserState.token,
         user: useGetLocalStorage('user') ?? initalUserState.user,

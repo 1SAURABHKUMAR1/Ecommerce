@@ -2,7 +2,7 @@ import { useEffect, createContext, useContext, useReducer } from 'react';
 import CartReducer from './CartReducer';
 
 import { useAuthProvider } from '../Auth/AuthProvider';
-import axios from 'axios';
+import Axios from '../../Utils/Axios';
 
 const intialCartState = {
     cartItems: [],
@@ -21,21 +21,16 @@ const CartProvider = ({ children }) => {
 
     const fetchData = async () => {
         try {
-            const responseCart = await axios.get(
-                `${process.env.REACT_APP_API_URL}/user/cart`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+            const { data } = await Axios.get('/user/cart', {
+                headers: {
+                    Authorization: `Bearer ${userAuth.token}`,
                 },
-            );
+            });
 
-            responseCart.data.cart?.cartItems?.length > 0
+            data.cart?.cartItems?.length > 0
                 ? cartDispatch({
                       type: 'UPDATE_CART_FROM_SERVER',
-                      payload: responseCart.data.cart.cartItems,
+                      payload: data.cart.cartItems,
                   })
                 : cartDispatch({
                       type: 'DEFAULT_CART',
@@ -53,6 +48,7 @@ const CartProvider = ({ children }) => {
                 type: 'DEFAULT_CART',
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userAuth]);
 
     useEffect(() => {

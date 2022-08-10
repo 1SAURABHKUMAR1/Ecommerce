@@ -34,7 +34,7 @@ const Checkout = () => {
         if (!userAuth.login) {
             navigate('/login', { state: { from: location.pathname } });
         }
-    }, [userAuth]);
+    }, [location, navigate, userAuth]);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps

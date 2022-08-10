@@ -7,7 +7,7 @@ import { useAuthProvider } from '../../../Context/Auth/AuthProvider';
 
 import ErrorToast from '../../../Toast/ErrorToast';
 
-import axios from 'axios';
+import Axios from '../../../Utils/Axios';
 
 const CartProductCard = (props) => {
     const { image, name, price, quantity, productId } = props;
@@ -21,23 +21,21 @@ const CartProductCard = (props) => {
 
     const incrementQuantity = async () => {
         try {
-            const responseData = await axios.put(
-                `${process.env.REACT_APP_API_URL}/user/cart/${productId}`,
+            const { data } = await Axios.put(
+                `/user/cart/${productId}`,
                 {
                     action: 'increment',
                 },
                 {
                     headers: {
                         Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
                     },
                 },
             );
 
             cartDispatch({
                 type: 'UPDATE_CART_FROM_SERVER',
-                payload: responseData.data.cart?.cartItems,
+                payload: data.cart?.cartItems,
             });
         } catch (error) {
             ErrorToast('Something went wrong');
@@ -47,23 +45,21 @@ const CartProductCard = (props) => {
 
     const decrementQuantity = async () => {
         try {
-            const responseData = await axios.put(
-                `${process.env.REACT_APP_API_URL}/user/cart/${productId}`,
+            const { data } = await Axios.put(
+                `/user/cart/${productId}`,
                 {
                     action: 'decrement',
                 },
                 {
                     headers: {
                         Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
                     },
                 },
             );
 
             cartDispatch({
                 type: 'UPDATE_CART_FROM_SERVER',
-                payload: responseData.data.cart?.cartItems,
+                payload: data.cart?.cartItems,
             });
 
             cartItems.length === 1 &&
@@ -78,20 +74,15 @@ const CartProductCard = (props) => {
 
     const removeProduct = async () => {
         try {
-            const responseData = await axios.delete(
-                `${process.env.REACT_APP_API_URL}/user/cart/${productId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+            const { data } = await Axios.delete(`/user/cart/${productId}`, {
+                headers: {
+                    Authorization: `Bearer ${userAuth.token}`,
                 },
-            );
+            });
 
             cartDispatch({
                 type: 'UPDATE_CART_FROM_SERVER',
-                payload: responseData.data.cart?.cartItems,
+                payload: data.cart?.cartItems,
             });
 
             cartItems.length === 1 &&

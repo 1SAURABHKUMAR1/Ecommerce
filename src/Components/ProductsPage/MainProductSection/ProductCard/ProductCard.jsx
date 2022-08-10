@@ -7,7 +7,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useCartProvider } from '../../../../Context/Cart/CartProvider';
 import { useAuthProvider } from '../../../../Context/Auth/AuthProvider';
 
-import axios from 'axios';
+import Axios from '../../../../Utils/Axios';
 
 import ErrorToast from '../../../../Toast/ErrorToast';
 
@@ -35,7 +35,7 @@ const ProductCard = ({
         try {
             loadingHandler();
 
-            const responseData = await axios.post(
+            const { data } = await Axios.post(
                 `${process.env.REACT_APP_API_URL}/user/cart`,
                 {
                     cartItems: [
@@ -51,15 +51,13 @@ const ProductCard = ({
                 {
                     headers: {
                         Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
                     },
                 },
             );
 
             cartDispatch({
                 type: 'UPDATE_CART_FROM_SERVER',
-                payload: responseData.data.cart?.cartItems,
+                payload: data.cart?.cartItems,
             });
         } catch (error) {
             ErrorToast('Something went wrong');
@@ -94,6 +92,7 @@ const ProductCard = ({
         ) {
             setButtonText('Buy Now');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartItems]);
 
     return (

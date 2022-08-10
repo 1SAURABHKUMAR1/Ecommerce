@@ -9,7 +9,8 @@ import ErrorToast from '../../Toast/ErrorToast';
 import SuccessToast from '../../Toast/SuccessToast';
 
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
+import Axios from '../../Utils/Axios';
 import { useEffect } from 'react';
 
 const ForgotPasswordForm = () => {
@@ -21,35 +22,22 @@ const ForgotPasswordForm = () => {
     const handleForgotPassword = async () => {
         try {
             setLoading(true);
-            await axios.post(
-                `${process.env.REACT_APP_API_URL}/forgotpassword`,
-                { email },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                },
-            );
+
+            await Axios.post('/forgotpassword', { email });
 
             setLoading(false);
-            setEmail('');
             SuccessToast('Token Send Success');
             navigate('/');
         } catch (error) {
             if (error.response) {
-                error.response.status === 400 ? (
-                    ErrorToast(error.response.data.message)
-                ) : (
-                    <> </>
-                );
+                error.response.status === 400 &&
+                    ErrorToast(error.response.data.message);
             } else {
                 ErrorToast('Token Send Failed');
             }
 
             console.log(error);
             setLoading(false);
-            setEmail('');
         }
     };
 
@@ -62,6 +50,10 @@ const ForgotPasswordForm = () => {
         if (userAuth.login === true) {
             navigate('/');
         }
+
+        return () => {
+            setEmail('');
+        };
         // eslint-disable-next-line
     }, []);
 

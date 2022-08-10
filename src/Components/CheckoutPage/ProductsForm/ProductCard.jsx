@@ -1,15 +1,10 @@
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = (props) => {
     const { image, name, price, productId } = props;
 
-    const [deliveryDate, setDeliveryDate] = useState(7);
-
-    useEffect(() => {
-        setDeliveryDate(Math.floor(Math.random() * 6 + 5));
-    }, []);
+    const [deliveryDate] = useState(() => Math.floor(Math.random() * 6 + 5));
 
     return (
         <>

@@ -6,8 +6,7 @@ import razorpay from '../../../Data/Svg/razorpay.svg';
 import stripe from '../../../Data/Svg/stripe.svg';
 
 import { useCheckoutProvider } from '../../../Context/Checkout/CheckoutProvider';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PaymentOptions = () => {
     const {
@@ -24,11 +23,7 @@ const PaymentOptions = () => {
     };
 
     useEffect(() => {
-        if (paymentMode) {
-            setIsValid(true);
-        } else {
-            setIsValid(false);
-        }
+        paymentMode ? setIsValid(true) : setIsValid(false);
     }, [paymentMode]);
 
     useEffect(() => {

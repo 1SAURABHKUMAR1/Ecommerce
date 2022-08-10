@@ -9,7 +9,7 @@ import LoaderButton from '../../UI/Loader/LoaderButton';
 import ErrorToast from '../../../Toast/ErrorToast';
 import SuccessToast from '../../../Toast/SuccessToast';
 
-import axios from 'axios';
+import Axios from '../../../Utils/Axios';
 import { useNavigate, useLocation } from 'react-router';
 
 const OrderPriceSummary = ({ headerTitle, buttonText }) => {
@@ -41,8 +41,8 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
         setLoading(true);
 
         try {
-            const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/capturerazorpay`,
+            const { data } = await Axios.post(
+                '/capturerazorpay',
                 {
                     amount: (totalAmount + shippingAmount) * 100,
                 },
@@ -55,7 +55,7 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                 },
             );
 
-            return response.data.order.id;
+            return data?.order?.id;
         } catch (error) {
             ErrorToast('Something Went Wrong!');
             setLoading(false);
@@ -93,8 +93,8 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
     const generateOrder = async (paymentId) => {
         if (allFieldValid) {
             try {
-                await axios.post(
-                    `${process.env.REACT_APP_API_URL}/order/create`,
+                await Axios.post(
+                    '/order/create',
                     {
                         shippingInfo: {
                             address: shippingInfo.address,
@@ -115,8 +115,6 @@ const OrderPriceSummary = ({ headerTitle, buttonText }) => {
                     {
                         headers: {
                             Authorization: `Bearer ${userAuth.token}`,
-                            'Content-Type': 'application/json',
-                            Accept: 'application/json',
                         },
                     },
                 );

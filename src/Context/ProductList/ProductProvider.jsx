@@ -1,8 +1,13 @@
-import { useContext, createContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
+import {
+    useState,
+    useContext,
+    createContext,
+    useReducer,
+    useEffect,
+} from 'react';
+import Axios from '../../Utils/Axios';
 
 import ProductReducer from './ProductReducer';
-import { useState } from 'react';
 
 const ProductContext = createContext([]);
 
@@ -15,15 +20,7 @@ const ProductProvider = ({ children }) => {
     const [productResponse, setProductResponse] = useState({});
 
     const responseProducts = async () => {
-        const response = await axios.get(
-            `${process.env.REACT_APP_API_URL}/products`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-            },
-        );
+        const response = await Axios.get(`/products`);
 
         setProductResponse(response);
     };

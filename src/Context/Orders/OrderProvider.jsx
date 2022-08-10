@@ -3,7 +3,7 @@ import { useEffect, createContext, useContext, useState } from 'react';
 import { useAuthProvider } from '../Auth/AuthProvider';
 import { useCartProvider } from '../Cart/CartProvider';
 
-import axios from 'axios';
+import Axios from '../../Utils/Axios';
 
 const OrderContext = createContext(null);
 
@@ -16,16 +16,11 @@ const OrderProvider = ({ children }) => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(
-                `${process.env.REACT_APP_API_URL}/myorder`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${userAuth.token}`,
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
+            const response = await Axios.get('/myorder', {
+                headers: {
+                    Authorization: `Bearer ${userAuth.token}`,
                 },
-            );
+            });
 
             response.data.order?.length > 0 &&
                 setOrderItems(response.data.order);
