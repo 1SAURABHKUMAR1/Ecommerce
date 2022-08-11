@@ -56,7 +56,7 @@ const Account = () => {
                             <div className="w-full md:w-1/5 lg:w-1/6">
                                 <SidePanel />
                             </div>
-                            <div className="mt-3 w-full py-4 md:w-4/5 md:px-8 md:py-2 lg:w-5/6 lg:px-10 lg:py-4">
+                            <div className="relative mt-3 w-full py-4 md:w-4/5 md:px-8 md:py-2 lg:w-5/6 lg:px-10 lg:py-4">
                                 <Outlet />
                             </div>
                         </div>

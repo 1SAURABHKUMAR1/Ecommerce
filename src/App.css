@@ -5,11 +5,22 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: hsl(225deg, 12%, 40%);;
-    border: 2px solid hsl(225deg, 25%, 95%);;
+    background-color: hsl(225deg, 12%, 40%);
+    ;
+    border: 2px solid hsl(225deg, 25%, 95%);
+    ;
 }
 
 body::-webkit-scrollbar-track {
     border-radius: 3px;
     background-color: transparent;
+}
+
+.profile-user-info {
+    background:
+        linear-gradient(180deg, #000 8rem, transparent 8rem);
+}
+
+.box-shadow-profile {
+    box-shadow: 0 0 0 1px rgba(25, 25, 25, 0.2);
 }
