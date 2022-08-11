@@ -40,7 +40,7 @@ const Profile = () => {
                             'DD MM YYYY',
                         ),
                     },
-                    cart: data.cart?.length ?? 0,
+                    cart: data.cart?.cartItems?.length ?? 0,
                     order: data.order?.length ?? 0,
                 });
                 setLoadingState('FULFILED');
