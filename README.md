@@ -35,7 +35,7 @@
 -   Cart Management
 -   Placing an Order
 -   Razorpay support
--   User Account Page (Under Contruction)
+-   User Account Page
 -   Managing all Orders
 -   Support Page (Under Contruction)
 
